@@ -29,11 +29,36 @@ export const authSlice = createSlice({
       },
     ],
   },
-  reducers: {},
+  reducers: {
+    fetchCredStart(state) {
+      state.isLoadingAuth = true
+    },
+    fetchCredEnd(state) {
+      state.isLoadingAuth = false
+    },
+    setOpenSignIn(state) {
+      state.openSignIn = true
+    },
+    resetOpenSignIn(state) {
+      state.openSignIn = false
+    },
+    setOpenSignUp(state) {
+      state.openSignUp = true
+    },
+    resetOpenSignUp(state) {
+      state.openSignUp = false
+    },
+    setOpenProfile(state) {
+      state.openProfile = true
+    },
+    resetOpenProfile(state) {
+      state.openProfile = false
+    },
+  },
   extraReducers: (builder) => {},
 })
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const {} = authSlice.actions
 
 export const selectCount = (state: RootState) => state.counter.value
 
