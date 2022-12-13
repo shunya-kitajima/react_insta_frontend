@@ -73,11 +73,21 @@ export const fetchAuth = () => {
     return res.data[0]
   })
 
+  const fetchAsyncGetProfs = createAsyncThunk('profiles/get', async () => {
+    const res = await axios.get(`${apiUrl}api/profile`, {
+      headers: {
+        Authorization: `JWT ${localStorage.localJWT as string}`,
+      },
+    })
+    return res.data
+  })
+
   return {
     fetchAsyncLogin,
     fetchAsyncRegister,
     fetchAsyncCreateProf,
     fetchAsyncUpdateProf,
     fetchAsyncGetMyProf,
+    fetchAsyncGetProfs,
   }
 }
