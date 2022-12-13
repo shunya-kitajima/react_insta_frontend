@@ -1,9 +1,14 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
-import { File, PROPS_AUTHEN, PROPS_PROFILE, PROPS_NICKNAME } from '../types'
+import { fetchAuth } from '../../hooks/fetchAuth'
 
-const apiUrl = process.env.REACT_APP_DEV_API_URL
+const {
+  fetchAsyncLogin,
+  fetchAsyncCreateProf,
+  fetchAsyncUpdateProf,
+  fetchAsyncGetMyProf,
+  fetchAsyncGetProfs,
+} = fetchAuth()
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -58,7 +63,26 @@ export const authSlice = createSlice({
       state.myprofile.nickName = action.payload
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchAsyncLogin.fulfilled, (state, action) => {
+      localStorage.setItem('localJWT', action.payload.access)
+    })
+    builder.addCase(fetchAsyncCreateProf.fulfilled, (state, action) => {
+      state.myprofile = action.payload
+    })
+    builder.addCase(fetchAsyncUpdateProf.fulfilled, (state, action) => {
+      state.myprofile = action.payload
+      state.profiles = state.profiles.map((prof) =>
+        prof.id === action.payload.id ? action.payload : prof
+      )
+    })
+    builder.addCase(fetchAsyncGetMyProf.fulfilled, (state, action) => {
+      state.myprofile = action.payload
+    })
+    builder.addCase(fetchAsyncGetProfs.fulfilled, (state, action) => {
+      state.profiles = action.payload
+    })
+  },
 })
 
 export const {
