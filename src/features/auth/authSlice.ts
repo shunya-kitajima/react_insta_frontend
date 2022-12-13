@@ -97,6 +97,36 @@ export const {
   editNickName,
 } = authSlice.actions
 
-export const selectCount = (state: RootState) => state.counter.value
+export const selectOpenSignIn = (state: RootState): boolean =>
+  state.auth.openSignIn
+
+export const selectOpenSignUp = (state: RootState): boolean =>
+  state.auth.openSignUp
+
+export const selectOpenProfile = (state: RootState): boolean =>
+  state.auth.openProfile
+
+export const selectIsLoadingAuth = (state: RootState): boolean =>
+  state.auth.isLoadingAuth
+
+export const selectProfile = (
+  state: RootState
+): {
+  id: string
+  nickName: string
+  userProfile: string
+  img: string
+  created_at: string
+} => state.auth.myprofile
+
+export const selectProfiles = (
+  state: RootState
+): Array<{
+  id: string
+  nickName: string
+  userProfile: string
+  img: string
+  created_at: string
+}> => state.auth.profiles
 
 export default authSlice.reducer
