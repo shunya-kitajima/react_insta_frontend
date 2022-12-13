@@ -54,6 +54,9 @@ export const authSlice = createSlice({
     resetOpenProfile(state) {
       state.openProfile = false
     },
+    editNickName(state, action) {
+      state.myprofile.nickName = action.payload
+    },
   },
   extraReducers: (builder) => {},
 })
