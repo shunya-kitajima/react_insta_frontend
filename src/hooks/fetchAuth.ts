@@ -51,7 +51,7 @@ export const fetchAuth = () => {
       if (profile.img !== null)
         uploadData.append('img', profile.img, profile.img.name)
       const res = await axios.put(
-        `${apiUrl}api/profil/${profile.id}`,
+        `${apiUrl}api/profile/${profile.id}`,
         uploadData,
         {
           headers: {
@@ -64,5 +64,20 @@ export const fetchAuth = () => {
     }
   )
 
-  return { fetchAsyncLogin, fetchAsyncRegister, fetchAsyncCreateProf }
+  const fetchAsyncGetMyProf = createAsyncThunk('profile/get', async () => {
+    const res = await axios.get(`${apiUrl}api/myprofile`, {
+      headers: {
+        Authorization: `JWT ${localStorage.localJWT as string}`,
+      },
+    })
+    return res.data[0]
+  })
+
+  return {
+    fetchAsyncLogin,
+    fetchAsyncRegister,
+    fetchAsyncCreateProf,
+    fetchAsyncUpdateProf,
+    fetchAsyncGetMyProf,
+  }
 }
