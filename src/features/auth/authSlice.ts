@@ -61,7 +61,17 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {},
 })
 
-export const {} = authSlice.actions
+export const {
+  fetchCredStart,
+  fetchCredEnd,
+  setOpenSignIn,
+  resetOpenSignIn,
+  setOpenSignUp,
+  resetOpenSignUp,
+  setOpenProfile,
+  resetOpenProfile,
+  editNickName,
+} = authSlice.actions
 
 export const selectCount = (state: RootState) => state.counter.value
 
