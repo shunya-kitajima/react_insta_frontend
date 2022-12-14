@@ -107,6 +107,20 @@ const Auth: React.FC = () => {
                   {touched.email === true && errors.email !== '' ? (
                     <div className={styles.auth_error}>{errors.email}</div>
                   ) : null}
+                  <TextField
+                    placeholder="password"
+                    type="input"
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                  />
+                  <br />
+                  {touched.password === true && errors.password !== '' ? (
+                    <div className={styles.auth_error}>{errors.password}</div>
+                  ) : null}
+                  <br />
+                  <br />
                 </div>
               </form>
             </div>
