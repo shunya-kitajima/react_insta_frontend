@@ -132,6 +132,15 @@ const Auth: React.FC = () => {
                 </Button>
                 <br />
                 <br />
+                <span
+                  className={styles.auth_text}
+                  onClick={() => {
+                    dispatch(setOpenSignIn())
+                    dispatch(resetOpenSignUp())
+                  }}
+                >
+                  You already have a account ?
+                </span>
               </form>
             </div>
           )}
