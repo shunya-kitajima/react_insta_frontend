@@ -33,6 +33,11 @@ const customStyles = {
   },
 }
 
+const schema = Yup.object().shape({
+  email: Yup.string().email('email format ist wrong').required('email is must'),
+  password: Yup.string().required('password is must').min(4),
+})
+
 const Auth: React.FC = () => {
   Modal.setAppElement('#root')
   const dispatch: AppDispatch = useDispatch()
@@ -41,13 +46,75 @@ const Auth: React.FC = () => {
   const isLoadingAuth = useSelector(selectIsLoadingAuth)
   const {
     fetchAsyncLogin,
+    fetchAsyncRegister,
     fetchAsyncCreateProf,
-    fetchAsyncUpdateProf,
     fetchAsyncGetMyProf,
     fetchAsyncGetProfs,
   } = fetchAuth()
 
-  return <div></div>
+  return (
+    <>
+      <Modal
+        isOpen={openSignUp}
+        onRequestClose={() => dispatch(resetOpenSignUp())}
+        style={customStyles}
+      >
+        <Formik
+          initialErrors={{ email: 'required' }}
+          initialValues={{ email: '', password: '' }}
+          onSubmit={async (values) => {
+            dispatch(fetchCredStart())
+            const resultReg = await dispatch(fetchAsyncRegister(values))
+
+            if (fetchAsyncRegister.fulfilled.match(resultReg)) {
+              await dispatch(fetchAsyncLogin(values))
+              await dispatch(fetchAsyncCreateProf({ nickName: 'anonymous' }))
+              await dispatch(fetchAsyncGetProfs())
+              await dispatch(fetchAsyncGetMyProf())
+            }
+            dispatch(fetchCredEnd())
+            dispatch(resetOpenSignUp())
+          }}
+          validationSchema={schema}
+        >
+          {({
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            values,
+            errors,
+            touched,
+            isValid,
+          }) => (
+            <div>
+              <form onSubmit={handleSubmit}>
+                <div className={styles.auth_signUp}>
+                  <h1 className={styles.auth_title}>Insta Clone</h1>
+                  <br />
+                  <div className={styles.auth_progress}>
+                    {isLoadingAuth && <CircularProgress />}
+                  </div>
+                  <br />
+                  <TextField
+                    placeholder="email"
+                    type="input"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                  />
+                  <br />
+                  {touched.email === true && errors.email !== '' ? (
+                    <div className={styles.auth_error}>{errors.email}</div>
+                  ) : null}
+                </div>
+              </form>
+            </div>
+          )}
+        </Formik>
+      </Modal>
+    </>
+  )
 }
 
 export default Auth
