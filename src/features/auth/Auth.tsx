@@ -34,6 +34,11 @@ const customStyles = {
 }
 
 const Auth: React.FC = () => {
+  Modal.setAppElement('#root')
+  const dispatch: AppDispatch = useDispatch()
+  const openSignIn = useSelector(selectOpenSignIn)
+  const openSignUp = useSelector(selectOpenSignUp)
+  const isLoadingAuth = useSelector(selectIsLoadingAuth)
   const {
     fetchAsyncLogin,
     fetchAsyncCreateProf,
