@@ -19,6 +19,20 @@ import {
 } from './authSlice'
 import styles from './Auth.module.css'
 
+const customStyles = {
+  overlay: {
+    backgroundColor: '#7777777',
+  },
+  content: {
+    top: '55%',
+    left: '50%',
+    width: 280,
+    height: 350,
+    padding: '50px',
+    transform: 'translate(-50%, -50%)',
+  },
+}
+
 const Auth: React.FC = () => {
   const {
     fetchAsyncLogin,
