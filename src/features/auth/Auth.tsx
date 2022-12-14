@@ -122,6 +122,16 @@ const Auth: React.FC = () => {
                   <br />
                   <br />
                 </div>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={!isValid}
+                >
+                  Register
+                </Button>
+                <br />
+                <br />
               </form>
             </div>
           )}
