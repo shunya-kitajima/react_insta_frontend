@@ -146,6 +146,97 @@ const Auth: React.FC = () => {
           )}
         </Formik>
       </Modal>
+
+      <Modal
+        isOpen={openSignIn}
+        onRequestClose={() => dispatch(resetOpenSignIn())}
+        style={customStyles}
+      >
+        <Formik
+          initialErrors={{ email: 'required' }}
+          initialValues={{ email: '', password: '' }}
+          onSubmit={async (values) => {
+            dispatch(fetchCredStart())
+            const resultLog = await dispatch(fetchAsyncLogin(values))
+
+            if (fetchAsyncLogin.fulfilled.match(resultLog)) {
+              await dispatch(fetchAsyncGetProfs())
+              await dispatch(fetchAsyncGetMyProf())
+            }
+            dispatch(fetchCredEnd())
+            dispatch(resetOpenSignUp())
+          }}
+          validationSchema={schema}
+        >
+          {({
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            values,
+            errors,
+            touched,
+            isValid,
+          }) => (
+            <div>
+              <form onSubmit={handleSubmit}>
+                <div className={styles.auth_signUp}>
+                  <h1 className={styles.auth_title}>Insta Clone</h1>
+                  <br />
+                  <div className={styles.auth_progress}>
+                    {isLoadingAuth && <CircularProgress />}
+                  </div>
+                  <br />
+                  <TextField
+                    placeholder="email"
+                    type="input"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                  />
+                  <br />
+                  {touched.email === true && errors.email !== '' ? (
+                    <div className={styles.auth_error}>{errors.email}</div>
+                  ) : null}
+                  <TextField
+                    placeholder="password"
+                    type="input"
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                  />
+                  <br />
+                  {touched.password === true && errors.password !== '' ? (
+                    <div className={styles.auth_error}>{errors.password}</div>
+                  ) : null}
+                  <br />
+                  <br />
+                </div>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={!isValid}
+                >
+                  Login
+                </Button>
+                <br />
+                <br />
+                <span
+                  className={styles.auth_text}
+                  onClick={() => {
+                    dispatch(resetOpenSignIn())
+                    dispatch(setOpenSignUp())
+                  }}
+                >
+                  You dont have a account ?
+                </span>
+              </form>
+            </div>
+          )}
+        </Formik>
+      </Modal>
     </>
   )
 }
