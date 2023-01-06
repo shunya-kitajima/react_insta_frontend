@@ -109,7 +109,7 @@ const Auth: React.FC = () => {
                   ) : null}
                   <TextField
                     placeholder="password"
-                    type="input"
+                    type="password"
                     name="password"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -200,7 +200,7 @@ const Auth: React.FC = () => {
                   ) : null}
                   <TextField
                     placeholder="password"
-                    type="input"
+                    type="password"
                     name="password"
                     onChange={handleChange}
                     onBlur={handleBlur}
