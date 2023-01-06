@@ -104,7 +104,9 @@ const Auth: React.FC = () => {
                     value={values.email}
                   />
                   <br />
-                  {touched.email === true && errors.email !== '' ? (
+                  {touched.email === true &&
+                  errors.email !== undefined &&
+                  errors.email !== '' ? (
                     <div className={styles.auth_error}>{errors.email}</div>
                   ) : null}
                   <TextField
@@ -116,7 +118,9 @@ const Auth: React.FC = () => {
                     value={values.password}
                   />
                   <br />
-                  {touched.password === true && errors.password !== '' ? (
+                  {touched.password === true &&
+                  errors.password !== undefined &&
+                  errors.password !== '' ? (
                     <div className={styles.auth_error}>{errors.password}</div>
                   ) : null}
                   <br />
@@ -195,7 +199,9 @@ const Auth: React.FC = () => {
                     value={values.email}
                   />
                   <br />
-                  {touched.email === true && errors.email !== '' ? (
+                  {touched.email === true &&
+                  errors.email !== undefined &&
+                  errors.email !== '' ? (
                     <div className={styles.auth_error}>{errors.email}</div>
                   ) : null}
                   <TextField
@@ -207,7 +213,9 @@ const Auth: React.FC = () => {
                     value={values.password}
                   />
                   <br />
-                  {touched.password === true && errors.password !== '' ? (
+                  {touched.password === true &&
+                  errors.password !== undefined &&
+                  errors.password !== '' ? (
                     <div className={styles.auth_error}>{errors.password}</div>
                   ) : null}
                   <br />
