@@ -21,7 +21,7 @@ import styles from './Auth.module.css'
 
 const customStyles = {
   overlay: {
-    backgroundColor: '#7777777',
+    backgroundColor: '#777777',
   },
   content: {
     top: '55%',
