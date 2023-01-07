@@ -1,5 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
+import { fetchPost } from '../../hooks/fetchPost'
+
+const {
+  fetchAsyncGetPosts,
+  fetchAsyncNewPost,
+  fetchAsyncPatchLiked,
+  fetchAsyncGetComments,
+  fetchAsyncPostComment,
+} = fetchPost()
 
 export const postSlice = createSlice({
   name: 'post',
@@ -40,3 +49,5 @@ export const postSlice = createSlice({
     },
   },
 })
+
+export default postSlice.reducer
