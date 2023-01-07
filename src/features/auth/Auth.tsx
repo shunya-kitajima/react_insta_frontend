@@ -128,26 +128,24 @@ const Auth: React.FC = () => {
                   ) : null}
                   <br />
                   <br />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={!isValid}
+                  >
+                    Register
+                  </Button>
+                  <span
+                    className={styles.auth_text}
+                    onClick={() => {
+                      dispatch(setOpenSignIn())
+                      dispatch(resetOpenSignUp())
+                    }}
+                  >
+                    You already have a account ?
+                  </span>
                 </div>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={!isValid}
-                >
-                  Register
-                </Button>
-                <br />
-                <br />
-                <span
-                  className={styles.auth_text}
-                  onClick={() => {
-                    dispatch(setOpenSignIn())
-                    dispatch(resetOpenSignUp())
-                  }}
-                >
-                  You already have a account ?
-                </span>
               </form>
             </div>
           )}
@@ -226,26 +224,27 @@ const Auth: React.FC = () => {
                   ) : null}
                   <br />
                   <br />
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={!isValid}
+                  >
+                    Login
+                  </Button>
+                  <br />
+                  <br />
+                  <span
+                    className={styles.auth_text}
+                    onClick={() => {
+                      dispatch(resetOpenSignIn())
+                      dispatch(setOpenSignUp())
+                    }}
+                  >
+                    You dont have a account ?
+                  </span>
                 </div>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={!isValid}
-                >
-                  Login
-                </Button>
-                <br />
-                <br />
-                <span
-                  className={styles.auth_text}
-                  onClick={() => {
-                    dispatch(resetOpenSignIn())
-                    dispatch(setOpenSignUp())
-                  }}
-                >
-                  You dont have a account ?
-                </span>
               </form>
             </div>
           )}
