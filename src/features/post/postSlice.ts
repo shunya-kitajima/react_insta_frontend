@@ -25,4 +25,18 @@ export const postSlice = createSlice({
       },
     ],
   },
+  reducers: {
+    fetchPostStart(state) {
+      state.isLoadingPost = true
+    },
+    fetchPostEnd(state) {
+      state.isLoadingPost = false
+    },
+    setOpenNewPost(state) {
+      state.openNewPost = true
+    },
+    resetOpenNewPost(state) {
+      state.openNewPost = false
+    },
+  },
 })
