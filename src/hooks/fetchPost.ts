@@ -62,7 +62,7 @@ export const fetchPost = () => {
         })
         return res.data
       }
-      const res = await axios.put(`${postApiUrl}${liked.id}/`, uploadData, {
+      const res = await axios.patch(`${postApiUrl}${liked.id}/`, uploadData, {
         headers: {
           'Content-type': 'application/json',
           Authorization: `JWT ${localStorage.localJWT as string}`,
