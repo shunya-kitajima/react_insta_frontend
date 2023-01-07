@@ -56,7 +56,10 @@ const Auth: React.FC = () => {
     <>
       <Modal
         isOpen={openSignUp}
-        onRequestClose={() => dispatch(resetOpenSignUp())}
+        onRequestClose={() => {
+          dispatch(setOpenSignIn())
+          dispatch(resetOpenSignUp())
+        }}
         style={customStyles}
       >
         <Formik
@@ -153,7 +156,10 @@ const Auth: React.FC = () => {
 
       <Modal
         isOpen={openSignIn}
-        onRequestClose={() => dispatch(resetOpenSignIn())}
+        onRequestClose={() => {
+          dispatch(resetOpenSignIn())
+          dispatch(setOpenSignUp())
+        }}
         style={customStyles}
       >
         <Formik
