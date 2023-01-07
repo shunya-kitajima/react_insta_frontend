@@ -20,7 +20,7 @@ export interface PROPS_NICKNAME {
 
 export interface PROPS_NEWPOST {
   title: string
-  imb: File | null
+  img: File | null
 }
 
 export interface PROPS_LIKED {
