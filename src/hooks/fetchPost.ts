@@ -35,5 +35,42 @@ export const fetchPost = () => {
     }
   )
 
-  return { fetchAsyncGetPosts, fetchAsyncNewPost }
+  const fetchAsyncPatchLiked = createAsyncThunk(
+    'post/patch',
+    async (liked: PROPS_LIKED) => {
+      const currentLiked = liked.current
+      const uploadData = new FormData()
+
+      let isOverlapped = false
+      currentLiked.forEach((current) => {
+        if (current === liked.new) {
+          isOverlapped = true
+        } else {
+          uploadData.append('liked', String(current))
+        }
+      })
+
+      if (!isOverlapped) {
+        uploadData.append('liked', String(liked.new))
+      } else if (currentLiked.length === 1) {
+        uploadData.append('title', liked.title)
+        const res = await axios.put(`${postApiUrl}${liked.id}/`, uploadData, {
+          headers: {
+            'Content-type': 'application/json',
+            Authorization: `JWT ${localStorage.localJWT as string}`,
+          },
+        })
+        return res.data
+      }
+      const res = await axios.put(`${postApiUrl}${liked.id}/`, uploadData, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `JWT ${localStorage.localJWT as string}`,
+        },
+      })
+      return res.data
+    }
+  )
+
+  return { fetchAsyncGetPosts, fetchAsyncNewPost, fetchAsyncPatchLiked }
 }
