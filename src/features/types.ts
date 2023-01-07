@@ -17,3 +17,20 @@ export interface PROPS_PROFILE {
 export interface PROPS_NICKNAME {
   nickName: string
 }
+
+export interface PROPS_NEWPOST {
+  title: string
+  imb: File | null
+}
+
+export interface PROPS_LIKED {
+  id: string
+  title: string
+  current: string[]
+  new: string
+}
+
+export interface PROPS_COMMENT {
+  text: string
+  post: string
+}
