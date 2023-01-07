@@ -155,8 +155,8 @@ const Auth: React.FC = () => {
       <Modal
         isOpen={openSignIn}
         onRequestClose={() => {
-          dispatch(resetOpenSignIn())
           dispatch(setOpenSignUp())
+          dispatch(resetOpenSignIn())
         }}
         style={customStyles}
       >
@@ -172,7 +172,7 @@ const Auth: React.FC = () => {
               await dispatch(fetchAsyncGetMyProf())
             }
             dispatch(fetchCredEnd())
-            dispatch(resetOpenSignUp())
+            dispatch(resetOpenSignIn())
           }}
           validationSchema={schema}
         >
@@ -236,8 +236,8 @@ const Auth: React.FC = () => {
                   <span
                     className={styles.auth_text}
                     onClick={() => {
-                      dispatch(resetOpenSignIn())
                       dispatch(setOpenSignUp())
+                      dispatch(resetOpenSignIn())
                     }}
                   >
                     You dont have a account ?
