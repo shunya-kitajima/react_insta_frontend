@@ -233,8 +233,6 @@ const Auth: React.FC = () => {
                   >
                     Login
                   </Button>
-                  <br />
-                  <br />
                   <span
                     className={styles.auth_text}
                     onClick={() => {
