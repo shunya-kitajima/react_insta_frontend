@@ -9,5 +9,14 @@ const commentApiUrl = `${
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const fetchPost = () => {
-  return {}
+  const fetchAsyncGetPosts = createAsyncThunk('post/get', async () => {
+    const res = await axios.get(postApiUrl, {
+      headers: {
+        Authorization: `JWT ${localStorage.localJWT as string}`,
+      },
+    })
+    return res.data
+  })
+
+  return { fetchAsyncGetPosts }
 }
