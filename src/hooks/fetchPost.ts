@@ -72,5 +72,33 @@ export const fetchPost = () => {
     }
   )
 
-  return { fetchAsyncGetPosts, fetchAsyncNewPost, fetchAsyncPatchLiked }
+  const fetchAsyncGetComments = createAsyncThunk('comment/get', async () => {
+    const res = await axios.get(commentApiUrl, {
+      headers: {
+        Authorization: `JWT ${localStorage.localJWT as string}`,
+      },
+    })
+    return res.data
+  })
+
+  const fetchAsyncPostComment = createAsyncThunk(
+    'comment/post',
+    async (comment: PROPS_COMMENT) => {
+      const res = await axios.post(commentApiUrl, comment, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `JWT ${localStorage.localJWT as string}`,
+        },
+      })
+      return res.data
+    }
+  )
+
+  return {
+    fetchAsyncGetPosts,
+    fetchAsyncNewPost,
+    fetchAsyncPatchLiked,
+    fetchAsyncGetComments,
+    fetchAsyncPostComment,
+  }
 }
