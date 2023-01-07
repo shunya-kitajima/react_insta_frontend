@@ -34,3 +34,12 @@ export interface PROPS_COMMENT {
   text: string
   post: string
 }
+
+export interface PROPS_POST {
+  postId: string
+  loginId: string
+  userPost: string
+  title: string
+  imageUrl: string
+  liked: string[]
+}
