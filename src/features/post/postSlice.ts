@@ -91,4 +91,30 @@ export const {
   resetOpenNewPost,
 } = postSlice.actions
 
+export const selectIsloadingPost = (state: RootState): boolean =>
+  state.post.isLoadingPost
+
+export const selectOpenNewPost = (state: RootState): boolean =>
+  state.post.openNewPost
+
+export const selectPosts = (
+  state: RootState
+): Array<{
+  id: string
+  title: string
+  userPost: string
+  created_at: string
+  img: string
+  liked: string[]
+}> => state.post.posts
+
+export const selectComments = (
+  state: RootState
+): Array<{
+  id: string
+  text: string
+  userComment: string
+  post: string
+}> => state.post.comments
+
 export default postSlice.reducer
