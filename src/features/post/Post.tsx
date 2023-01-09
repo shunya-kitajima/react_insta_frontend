@@ -12,7 +12,7 @@ import {
 
 import { Favorite, FavoriteBorder } from '@material-ui/icons'
 import AvatarGroup from '@material-ui/lab/AvatarGroup'
-import { selectProfiles } from '../auth/authSlice'
+import { selectProfile, selectProfiles } from '../auth/authSlice'
 import { fetchPost } from '../../hooks/fetchPost'
 import { fetchPostStart, fetchPostEnd, selectComments } from './postSlice'
 import { PROPS_POST } from '../types'
@@ -43,13 +43,14 @@ const Post: React.FC<PROPS_POST> = ({
   const comments = useSelector(selectComments)
   const commentsOnPost = comments.filter((comment) => comment.post === postId)
   const profile = profiles.filter((prof) => prof.userProfile === userPost)
+  const myProf = useSelector(selectProfile)
   const { fetchAsyncPostComment, fetchAsyncPatchLiked } = fetchPost()
 
   const postCommentHandler = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault()
-    const packet = { text, post: postId }
+    const packet = { text, userComment: myProf.userProfile, post: postId }
     dispatch(fetchPostStart())
     await dispatch(fetchAsyncPostComment(packet))
     dispatch(fetchPostEnd())
