@@ -46,7 +46,7 @@ const Post: React.FC<PROPS_POST> = ({
   const { fetchAsyncPostComment, fetchAsyncPatchLiked } = fetchPost()
 
   const postCommentHandler = async (
-    e: React.MouseEvent<HTMLElement>
+    e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault()
     const packet = { text, post: postId }
@@ -121,6 +121,25 @@ const Post: React.FC<PROPS_POST> = ({
             </div>
           ))}
         </div>
+        <form
+          className={styles.post_commentBox}
+          onSubmit={async (e) => await postCommentHandler(e)}
+        >
+          <input
+            className={styles.post_input}
+            type="text"
+            placeholder="add a comment"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button
+            disabled={text.length === 0}
+            className={styles.post_button}
+            type="submit"
+          >
+            Post
+          </button>
+        </form>
       </div>
     )
   }
