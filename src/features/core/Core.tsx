@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch } from '../../app/store'
-import { withStyles } from '@material-ui/styles'
+import { Theme, withStyles, createStyles } from '@material-ui/core/styles'
 import {
   Button,
   Grid,
@@ -32,35 +32,36 @@ import {
 import Auth from '../auth/Auth'
 import styles from './Core.module.css'
 
-const StyledBadge = withStyles((theme) => ({
-  badge: {
-    backgroundColor: '#44b700',
-    color: '#44b700',
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    '&::after': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '50%',
-      animation: '$ripple 1.2s infinite ease-in-out',
-      border: '1px solid currentColor',
-      content: '""',
+const StyledBadge = withStyles((theme: Theme) =>
+  createStyles({
+    badge: {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '""',
+      },
     },
-  },
-  '@keyframes ripple': {
-    '0%': {
-      transform: 'scale(.8)',
-      opacity: 1,
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
     },
-    '100%': {
-      transform: 'scale(2.4)',
-      opacity: 0,
-    },
-  },
-}))(Badge)
+  })
+)(Badge)
 
 const Core: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
