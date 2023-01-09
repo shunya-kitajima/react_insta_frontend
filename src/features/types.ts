@@ -32,6 +32,7 @@ export interface PROPS_LIKED {
 
 export interface PROPS_COMMENT {
   text: string
+  userComment: string
   post: string
 }
 
