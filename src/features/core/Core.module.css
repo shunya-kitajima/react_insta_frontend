@@ -24,7 +24,7 @@
   object-fit: contain;
   display: flex;
   z-index: 1;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .core_btnModal {
