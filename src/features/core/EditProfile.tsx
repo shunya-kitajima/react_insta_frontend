@@ -4,6 +4,7 @@ import { AppDispatch } from '../../app/store'
 import Modal from 'react-modal'
 import { Button, TextField, IconButton } from '@material-ui/core'
 import { MdAddAPhoto } from 'react-icons/md'
+import { fetchAuth } from '../../hooks/fetchAuth'
 import {
   fetchCredStart,
   fetchCredEnd,
@@ -31,6 +32,16 @@ const EditProfile: React.FC = () => {
   const openProfile = useSelector(selectOpenProfile)
   const profile = useSelector(selectProfile)
   const [image, setImage] = useState<File | null>(null)
+  const { fetchAsyncUpdateProf } = fetchAuth()
+
+  const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const packet = { id: profile.id, nickName: profile.nickName, img: image }
+    dispatch(fetchCredStart())
+    await dispatch(fetchAsyncUpdateProf(packet))
+    dispatch(fetchCredEnd())
+    dispatch(resetOpenProfile())
+  }
 
   return <div></div>
 }
