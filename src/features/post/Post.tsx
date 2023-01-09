@@ -52,7 +52,7 @@ const Post: React.FC<PROPS_POST> = ({
     const packet = { text, post: postId }
     dispatch(fetchPostStart())
     await dispatch(fetchAsyncPostComment(packet))
-    dispatch(fetchPostEnd)
+    dispatch(fetchPostEnd())
     setText('')
   }
 
