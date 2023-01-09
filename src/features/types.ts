@@ -11,7 +11,7 @@ export interface PROPS_AUTHEN {
 export interface PROPS_PROFILE {
   id: string
   nickName: string
-  img: File | null | undefined
+  img: File | null
 }
 
 export interface PROPS_NICKNAME {
