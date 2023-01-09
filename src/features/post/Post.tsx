@@ -9,7 +9,6 @@ import {
   Divider,
   Checkbox,
 } from '@material-ui/core'
-
 import { Favorite, FavoriteBorder } from '@material-ui/icons'
 import AvatarGroup from '@material-ui/lab/AvatarGroup'
 import { selectProfile, selectProfiles } from '../auth/authSlice'
