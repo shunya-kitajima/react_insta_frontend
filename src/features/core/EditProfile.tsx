@@ -14,7 +14,7 @@ import {
   selectOpenProfile,
 } from '../auth/authSlice'
 import { File } from '../types'
-import styles from './Core.Module.css'
+import styles from './Core.module.css'
 
 const customStyles = {
   content: {
