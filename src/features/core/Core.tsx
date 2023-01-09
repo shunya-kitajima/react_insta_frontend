@@ -31,6 +31,7 @@ import {
 } from '../post/postSlice'
 import Auth from '../auth/Auth'
 import Post from '../post/Post'
+import EditProfile from './EditProfile'
 import styles from './Core.module.css'
 
 const StyledBadge = withStyles((theme: Theme) =>
@@ -92,6 +93,7 @@ const Core: React.FC = () => {
   return (
     <div>
       <Auth />
+      <EditProfile />
       <div className={styles.core_header}>
         <h1 className={styles.core_title}>Insta Clone</h1>
         {profile?.nickName !== '' ? (
