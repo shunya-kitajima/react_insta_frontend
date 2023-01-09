@@ -34,7 +34,9 @@ const EditProfile: React.FC = () => {
   const [image, setImage] = useState<File | null>(null)
   const { fetchAsyncUpdateProf } = fetchAuth()
 
-  const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
+  const updateProfile = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault()
     const packet = { id: profile.id, nickName: profile.nickName, img: image }
     dispatch(fetchCredStart())
