@@ -51,7 +51,7 @@ export const fetchAuth = () => {
       if (profile.img !== null)
         uploadData.append('img', profile.img, profile.img.name)
       const res = await axios.put(
-        `${apiUrl}api/profile/${profile.id}`,
+        `${apiUrl}api/profile/${profile.id}/`,
         uploadData,
         {
           headers: {
