@@ -6,6 +6,7 @@ import Modal from 'react-modal'
 import { TextField, Button, CircularProgress } from '@material-ui/core'
 import { AppDispatch } from '../../app/store'
 import { fetchAuth } from '../../hooks/fetchAuth'
+import { fetchPost } from '../../hooks/fetchPost'
 import {
   fetchCredStart,
   fetchCredEnd,
@@ -51,6 +52,7 @@ const Auth: React.FC = () => {
     fetchAsyncGetMyProf,
     fetchAsyncGetProfs,
   } = fetchAuth()
+  const { fetchAsyncGetPosts, fetchAsyncGetComments } = fetchPost()
 
   return (
     <>
@@ -74,6 +76,8 @@ const Auth: React.FC = () => {
               await dispatch(fetchAsyncCreateProf({ nickName: 'anonymous' }))
               await dispatch(fetchAsyncGetProfs())
               await dispatch(fetchAsyncGetMyProf())
+              await dispatch(fetchAsyncGetPosts())
+              await dispatch(fetchAsyncGetComments())
             }
             dispatch(fetchCredEnd())
             dispatch(resetOpenSignUp())
