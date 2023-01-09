@@ -30,6 +30,7 @@ import {
   selectPosts,
 } from '../post/postSlice'
 import Auth from '../auth/Auth'
+import Post from '../post/Post'
 import styles from './Core.module.css'
 
 const StyledBadge = withStyles((theme: Theme) =>
