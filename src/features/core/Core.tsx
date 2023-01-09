@@ -104,6 +104,7 @@ const Core: React.FC = () => {
               <MdAddAPhoto />
             </button>
             <div className={styles.core_logout}>
+              {(isLoadingAuth || isLoadingPost) && <CircularProgress />}
               <Button
                 onClick={() => {
                   localStorage.removeItem('localJWT')
@@ -115,6 +116,16 @@ const Core: React.FC = () => {
               >
                 Logout
               </Button>
+              <StyledBadge
+                overlap="circular"
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                variant="dot"
+              >
+                <Avatar alt="who?" src={profile.img} />
+              </StyledBadge>
             </div>
           </>
         ) : (
