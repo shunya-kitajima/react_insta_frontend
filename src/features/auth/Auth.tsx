@@ -174,6 +174,8 @@ const Auth: React.FC = () => {
             if (fetchAsyncLogin.fulfilled.match(resultLog)) {
               await dispatch(fetchAsyncGetProfs())
               await dispatch(fetchAsyncGetMyProf())
+              await dispatch(fetchAsyncGetPosts())
+              await dispatch(fetchAsyncGetComments())
             }
             dispatch(fetchCredEnd())
             dispatch(resetOpenSignIn())
