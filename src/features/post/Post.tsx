@@ -65,7 +65,7 @@ const Post: React.FC<PROPS_POST> = ({
     }
     dispatch(fetchPostStart())
     await dispatch(fetchAsyncPatchLiked(packet))
-    dispatch(fetchPostEnd)
+    dispatch(fetchPostEnd())
   }
 
   if (title !== '') {
