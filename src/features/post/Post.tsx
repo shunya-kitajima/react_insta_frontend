@@ -41,7 +41,7 @@ const Post: React.FC<PROPS_POST> = ({
   const classes = useStyles()
   const profiles = useSelector(selectProfiles)
   const comments = useSelector(selectComments)
-  const commentsOnPost = comments.filter((comment) => (comment.post = postId))
+  const commentsOnPost = comments.filter((comment) => comment.post === postId)
   const profile = profiles.filter((prof) => prof.userProfile === userPost)
   const { fetchAsyncPostComment, fetchAsyncPatchLiked } = fetchPost()
 
