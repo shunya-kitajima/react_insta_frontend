@@ -55,7 +55,7 @@ export const fetchAuth = () => {
         uploadData,
         {
           headers: {
-            'Content-type': 'application/json',
+            'Content-type': 'multipart/form-data',
             Authorization: `JWT ${localStorage.localJWT as string}`,
           },
         }
