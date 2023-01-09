@@ -67,7 +67,7 @@ export const fetchPost = () => {
         return res.data
       }
       uploadData = {
-        liekd: likedArray,
+        liked: likedArray,
       }
       const res = await axios.patch(`${postApiUrl}${liked.id}/`, uploadData, {
         headers: {
