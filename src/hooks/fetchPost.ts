@@ -39,21 +39,25 @@ export const fetchPost = () => {
     'post/patch',
     async (liked: PROPS_LIKED) => {
       const currentLiked = liked.current
-      const uploadData = new FormData()
+      const likedArray: string[] = []
+      let uploadData = {}
 
       let isOverlapped = false
       currentLiked.forEach((current) => {
         if (current === liked.new) {
           isOverlapped = true
         } else {
-          uploadData.append('liked', String(current))
+          likedArray.push(current)
         }
       })
 
       if (!isOverlapped) {
-        uploadData.append('liked', String(liked.new))
+        likedArray.push(liked.new)
       } else if (currentLiked.length === 1) {
-        uploadData.append('title', liked.title)
+        uploadData = {
+          title: liked.title,
+          liekd: [],
+        }
         const res = await axios.put(`${postApiUrl}${liked.id}/`, uploadData, {
           headers: {
             'Content-type': 'application/json',
@@ -61,6 +65,9 @@ export const fetchPost = () => {
           },
         })
         return res.data
+      }
+      uploadData = {
+        liekd: likedArray,
       }
       const res = await axios.patch(`${postApiUrl}${liked.id}/`, uploadData, {
         headers: {
