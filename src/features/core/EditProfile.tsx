@@ -31,7 +31,7 @@ const EditProfile: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
   const openProfile = useSelector(selectOpenProfile)
   const profile = useSelector(selectProfile)
-  const [image, setImage] = useState<File | null | undefined>(null)
+  const [image, setImage] = useState<File | null>(null)
   const { fetchAsyncUpdateProf } = fetchAuth()
 
   const updateProfile = async (
@@ -73,7 +73,13 @@ const EditProfile: React.FC = () => {
             type="file"
             id="imageInput"
             hidden
-            onChange={(e) => setImage(e.target.files?.[0])}
+            onChange={(e) =>
+              setImage(
+                e.target.files === undefined || e.target.files === null
+                  ? null
+                  : e.target.files[0]
+              )
+            }
           />
           <br />
           <IconButton onClick={editPictureHandler}>
