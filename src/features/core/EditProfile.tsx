@@ -31,7 +31,7 @@ const EditProfile: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
   const openProfile = useSelector(selectOpenProfile)
   const profile = useSelector(selectProfile)
-  const [image, setImage] = useState<File | null>(null)
+  const [image, setImage] = useState<File | null | undefined>(null)
   const { fetchAsyncUpdateProf } = fetchAuth()
 
   const updateProfile = async (
@@ -51,7 +51,40 @@ const EditProfile: React.FC = () => {
         isOpen={openProfile}
         onRequestClose={() => dispatch(resetOpenProfile())}
         style={customStyles}
-      ></Modal>
+      >
+        <form
+          className={styles.core_signUp}
+          onSubmit={async (e) => await updateProfile(e)}
+        >
+          <h1 className={styles.core_title}>Insta Clone</h1>
+          <br />
+          <TextField
+            placeholder="nickname"
+            type="text"
+            value={profile?.nickName}
+            onChange={(e) => dispatch(editNickName(e.target.value))}
+          />
+          <input
+            type="file"
+            id="imageInput"
+            hidden
+            onChange={(e) => setImage(e.target.files?.[0])}
+          />
+          <br />
+          <IconButton onClick={editPictureHandler}>
+            <MdAddAPhoto />
+          </IconButton>
+          <br />
+          <Button
+            disabled={profile?.nickName === ''}
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Update
+          </Button>
+        </form>
+      </Modal>
     </>
   )
 }
