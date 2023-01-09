@@ -96,6 +96,31 @@ const Post: React.FC<PROPS_POST> = ({
             ))}
           </AvatarGroup>
         </h4>
+        <Divider />
+        <div className={styles.post_comments}>
+          {commentsOnPost.map((comment) => (
+            <div key={comment.id} className={styles.post_comment}>
+              <Avatar
+                src={
+                  profiles.find(
+                    (prof) => prof.userProfile === comment.userComment
+                  )?.img
+                }
+                className={classes.small}
+              />
+              <p>
+                <strong className={styles.post_strong}>
+                  {
+                    profiles.find(
+                      (prof) => prof.userProfile === comment.userComment
+                    )?.nickName
+                  }
+                </strong>
+                {comment.text}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
