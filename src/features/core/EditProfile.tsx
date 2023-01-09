@@ -45,7 +45,15 @@ const EditProfile: React.FC = () => {
     dispatch(resetOpenProfile())
   }
 
-  return <div></div>
+  return (
+    <>
+      <Modal
+        isOpen={openProfile}
+        onRequestClose={() => dispatch(resetOpenProfile())}
+        style={customStyles}
+      ></Modal>
+    </>
+  )
 }
 
 export default EditProfile
