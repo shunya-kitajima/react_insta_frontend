@@ -117,16 +117,24 @@ const Core: React.FC = () => {
               >
                 Logout
               </Button>
-              <StyledBadge
-                overlap="circular"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
+              <button
+                className={styles.core_btnModal}
+                onClick={() => {
+                  dispatch(setOpenProfile())
+                  dispatch(resetOpenNewPost())
                 }}
-                variant="dot"
               >
-                <Avatar alt="who?" src={profile.img} />
-              </StyledBadge>
+                <StyledBadge
+                  overlap="circular"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  variant="dot"
+                >
+                  <Avatar alt="who?" src={profile.img} />
+                </StyledBadge>
+              </button>
             </div>
           </>
         ) : (
