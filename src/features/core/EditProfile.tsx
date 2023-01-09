@@ -45,6 +45,11 @@ const EditProfile: React.FC = () => {
     dispatch(resetOpenProfile())
   }
 
+  const editPictureHandler = (): void => {
+    const fileInput = document.getElementById('imageInput')
+    fileInput?.click()
+  }
+
   return (
     <>
       <Modal
