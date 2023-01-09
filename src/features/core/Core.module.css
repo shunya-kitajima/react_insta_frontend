@@ -36,3 +36,18 @@
   outline: none;
   cursor: pointer;
 }
+
+.core_logout {
+  display: flex;
+  justify-content: center;
+}
+
+.core_posts {
+  padding: 20px;
+}
+
+.core_progress {
+  margin-top: 15px;
+  display: flex;
+  justify-content: cetner;
+}
