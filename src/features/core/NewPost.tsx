@@ -50,7 +50,15 @@ const NewPost: React.FC = () => {
     fileInput?.click()
   }
 
-  return <div>NewPost</div>
+  return (
+    <>
+      <Modal
+        isOpen={openNewPost}
+        onRequestClose={() => dispatch(resetOpenNewPost())}
+        style={customStyles}
+      ></Modal>
+    </>
+  )
 }
 
 export default NewPost
