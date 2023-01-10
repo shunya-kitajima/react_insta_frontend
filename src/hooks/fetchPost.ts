@@ -27,7 +27,7 @@ export const fetchPost = () => {
         uploadData.append('img', newPost.img, newPost.img.name)
       const res = await axios.post(postApiUrl, uploadData, {
         headers: {
-          'Content-type': 'application/json',
+          'Content-type': 'multipart/form-data',
           Authorization: `JWT ${localStorage.localJWT as string}`,
         },
       })
