@@ -56,7 +56,45 @@ const NewPost: React.FC = () => {
         isOpen={openNewPost}
         onRequestClose={() => dispatch(resetOpenNewPost())}
         style={customStyles}
-      ></Modal>
+      >
+        <form
+          className={styles.core_signUp}
+          onSubmit={async (e) => await newPost(e)}
+        >
+          <h1 className={styles.core_title}>Insta Clone</h1>
+          <br />
+          <TextField
+            placeholder="Please enter caption"
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            type="file"
+            id="imageInput"
+            hidden
+            onChange={(e) =>
+              setImage(
+                e.target.files === undefined || e.target.files === null
+                  ? null
+                  : e.target.files[0]
+              )
+            }
+          />
+          <br />
+          <IconButton onClick={editPictureHandler}>
+            <MdAddAPhoto />
+          </IconButton>
+          <br />
+          <Button
+            disabled={title === '' || image === null}
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            New Post
+          </Button>
+        </form>
+      </Modal>
     </>
   )
 }
